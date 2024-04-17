@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,11 +19,13 @@ namespace AP.PowerupsSystem.CarriersSystem
         private void OnEnable()
         {
             TypingManager.Instance.OnWordSubmitted += TryFindCarrier;
+            GameManager.Instance.OnGameOver += GameOver;
         }
 
         private void OnDisable()
         {
             TypingManager.Instance.OnWordSubmitted -= TryFindCarrier;
+            GameManager.Instance.OnGameOver -= GameOver;
         }
 
         private void Start()
@@ -64,6 +67,11 @@ namespace AP.PowerupsSystem.CarriersSystem
         {
             Destroy(m_currentPowerupCarrier.gameObject);
             m_currentPowerupCarrier = null;
+        }
+
+        private void GameOver()
+        {
+            StopAllCoroutines();
         }
     }
 }
