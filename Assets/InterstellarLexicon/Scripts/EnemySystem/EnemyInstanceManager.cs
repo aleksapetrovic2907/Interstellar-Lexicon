@@ -37,7 +37,7 @@ namespace AP.EnemySystem
             TypingManager.Instance.OnWordSubmitted -= TryFindEnemy;
             ProjectilesManager.Instance.OnTargetShot -= TargetShot;
             PlanetBehaviour.Instance.OnHitByEnemy -= EnemyCrashed;
-            GameManager.Instance.OnLevelUp += ShortenInstantiatingDelay;
+            GameManager.Instance.OnLevelUp -= ShortenInstantiatingDelay;
             GameManager.Instance.OnGameOver -= () => GameOver();
         }
 
