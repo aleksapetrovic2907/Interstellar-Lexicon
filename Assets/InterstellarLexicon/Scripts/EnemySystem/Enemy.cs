@@ -42,7 +42,7 @@ namespace AP.EnemySystem
 
         private void OnDestroy()
         {
-            colorTween.Kill();
+            colorTween?.Kill();
             if (m_title != null) Destroy(m_title.gameObject);
         }
     }
