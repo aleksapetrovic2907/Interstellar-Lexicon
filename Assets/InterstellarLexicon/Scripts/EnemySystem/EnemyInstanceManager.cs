@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace AP.EnemySystem
     {
         public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         public int EnemiesDestroyed { get; private set; } = 0;
+
+        public event Action<Enemy> OnEnemyDestroyed;
 
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private Transform enemiesParent;
@@ -100,6 +103,7 @@ namespace AP.EnemySystem
             if (!target.TryGetComponent<Enemy>(out var enemy)) return;
 
             Enemies.Remove(enemy);
+            OnEnemyDestroyed?.Invoke(enemy);
             Destroy(enemy.gameObject);
         }
 

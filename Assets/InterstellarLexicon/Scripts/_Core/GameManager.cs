@@ -43,13 +43,13 @@ namespace AP
 
         private void OnEnable()
         {
-            ProjectilesManager.Instance.OnTargetShot += TargetShotByProjectile;
+            EnemyInstanceManager.Instance.OnEnemyDestroyed += EnemyDestroyed;
             PlanetBehaviour.Instance.OnHitByEnemy += PlanetHit;
         }
 
         private void OnDisable()
         {
-            ProjectilesManager.Instance.OnTargetShot -= TargetShotByProjectile;
+            EnemyInstanceManager.Instance.OnEnemyDestroyed -= EnemyDestroyed;
             PlanetBehaviour.Instance.OnHitByEnemy -= PlanetHit;
         }
 
@@ -67,10 +67,8 @@ namespace AP
 
         public void CorrectWordSubmitted() => WordsWrittenCorrectly++;
 
-        private void TargetShotByProjectile(Transform target)
+        private void EnemyDestroyed(Enemy enemy)
         {
-            if (!target.TryGetComponent<Enemy>(out var enemy)) return;
-
             var wordLength = enemy.word.Length;
             Points += (int)(wordLength * pointsPerLetter * pointsMultiplierFromPowerup);
             GainExperience(wordLength);
