@@ -16,6 +16,7 @@ namespace AP.EnemySystem
         [SerializeField] private Transform enemiesParent;
         [SerializeField] private Vector2 instantiateDelayRange;
         [SerializeField] private float delayDecreaseFactorPerLevel;
+        [SerializeField] private GameObject enemyDestroyVFXPrefab;
 
         private static Vector2 s_instViewportRangeY = new Vector2(0.15f, 0.85f);
 
@@ -106,8 +107,8 @@ namespace AP.EnemySystem
         private void EnemyCrashed(Enemy enemy)
         {
             Enemies.Remove(enemy);
+            Instantiate(enemyDestroyVFXPrefab, enemy.transform.position, enemyDestroyVFXPrefab.transform.rotation);
             Destroy(enemy.gameObject);
-            // todo: kaboom
         }
 
         private void ShortenInstantiatingDelay(int level) => instantiateDelayRange *= delayDecreaseFactorPerLevel;
