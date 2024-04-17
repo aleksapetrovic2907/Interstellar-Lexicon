@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Post Processing
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 872481385
+    locked: 0
+  - name: Planet
+    uniqueID: 2846635799
+    locked: 0
+  - name: Powerups
+    uniqueID: 4211301201
+    locked: 0
+  - name: Ships
+    uniqueID: 1261797221
+    locked: 0
+  - name: VFX
+    uniqueID: 2831177097
     locked: 0
