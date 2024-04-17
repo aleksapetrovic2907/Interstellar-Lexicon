@@ -9,6 +9,16 @@ namespace AP.PowerupsSystem
 
         [SerializeField] private List<Powerup> powerups;
 
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameOver += DisableAllPowerups;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameOver -= DisableAllPowerups;
+        }
+
         public void ActivatePowerup(PowerupType powerupType)
         {
             FindPowerupByType(powerupType).Activate();
@@ -26,6 +36,18 @@ namespace AP.PowerupsSystem
             }
 
             return powerups[index];
+        }
+
+        private void DisableAllPowerups()
+        {
+            foreach (Powerup powerup in powerups)
+            {
+                DurationalPowerup target = powerup as DurationalPowerup;
+                if (target == null) { continue; }
+
+                target.StopAllCoroutines();
+                target.DeactivatePowerup();
+            }
         }
     }
 }
