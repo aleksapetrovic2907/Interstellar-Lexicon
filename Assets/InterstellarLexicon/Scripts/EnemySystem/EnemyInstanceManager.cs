@@ -30,6 +30,7 @@ namespace AP.EnemySystem
             ProjectilesManager.Instance.OnTargetShot += TargetShot;
             PlanetBehaviour.Instance.OnHitByEnemy += EnemyCrashed;
             GameManager.Instance.OnLevelUp += ShortenInstantiatingDelay;
+            GameManager.Instance.OnGameOver += () => GameOver();
         }
         private void OnDisable()
         {
@@ -37,6 +38,7 @@ namespace AP.EnemySystem
             ProjectilesManager.Instance.OnTargetShot -= TargetShot;
             PlanetBehaviour.Instance.OnHitByEnemy -= EnemyCrashed;
             GameManager.Instance.OnLevelUp += ShortenInstantiatingDelay;
+            GameManager.Instance.OnGameOver -= () => GameOver();
         }
 
         private void Start()
@@ -114,5 +116,10 @@ namespace AP.EnemySystem
         }
 
         private void ShortenInstantiatingDelay(int level) => instantiateDelayRange *= delayDecreaseFactorPerLevel;
+
+        private void GameOver()
+        {
+            StopAllCoroutines();
+        }
     }
 }
