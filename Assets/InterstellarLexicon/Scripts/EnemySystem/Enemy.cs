@@ -18,7 +18,7 @@ namespace AP.EnemySystem
 
         private static readonly float s_colorTweenDuration = .35f;
         private static readonly Ease s_colorTweenEase = Ease.InSine;
-        private Tween colorTween = null;
+        private Tween m_colorTween = null;
         private WordUI m_title;
 
         private void Start()
@@ -30,7 +30,7 @@ namespace AP.EnemySystem
         public void GetReadyForShot()
         {
             gettingShot = true;
-            colorTween = whiteSpriteRenderer.DOFade(1f, s_colorTweenDuration).SetEase(s_colorTweenEase).Play();
+            m_colorTween = whiteSpriteRenderer.DOFade(1f, s_colorTweenDuration).SetEase(s_colorTweenEase).Play();
             Destroy(m_title.gameObject);
         }
 
@@ -42,7 +42,7 @@ namespace AP.EnemySystem
 
         private void OnDestroy()
         {
-            colorTween?.Kill();
+            m_colorTween?.Kill();
             if (m_title != null) Destroy(m_title.gameObject);
         }
     }
