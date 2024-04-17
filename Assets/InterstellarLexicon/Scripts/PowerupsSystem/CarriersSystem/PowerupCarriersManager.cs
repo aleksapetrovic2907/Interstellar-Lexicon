@@ -19,13 +19,13 @@ namespace AP.PowerupsSystem.CarriersSystem
         private void OnEnable()
         {
             TypingManager.Instance.OnWordSubmitted += TryFindCarrier;
-            GameManager.Instance.OnGameOver += GameOver;
+            GameManager.Instance.OnGameOver += StopSpawningCarriers;
         }
 
         private void OnDisable()
         {
             TypingManager.Instance.OnWordSubmitted -= TryFindCarrier;
-            GameManager.Instance.OnGameOver -= GameOver;
+            GameManager.Instance.OnGameOver -= StopSpawningCarriers;
         }
 
         private void Start()
@@ -69,9 +69,6 @@ namespace AP.PowerupsSystem.CarriersSystem
             m_currentPowerupCarrier = null;
         }
 
-        private void GameOver()
-        {
-            StopAllCoroutines();
-        }
+        private void StopSpawningCarriers() => StopAllCoroutines();
     }
 }
