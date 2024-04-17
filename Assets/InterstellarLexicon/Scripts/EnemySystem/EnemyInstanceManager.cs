@@ -107,7 +107,6 @@ namespace AP.EnemySystem
         {
             Enemies.Remove(enemy);
             Destroy(enemy.gameObject);
-            // todo: kaboom
         }
 
         private void ShortenInstantiatingDelay(int level) => instantiateDelayRange *= delayDecreaseFactorPerLevel;
