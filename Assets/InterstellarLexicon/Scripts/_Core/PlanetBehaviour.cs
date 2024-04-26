@@ -8,11 +8,6 @@ namespace AP
     {
         public event Action<Enemy> OnHitByEnemy;
 
-        protected override void Awake()
-        {
-            base.Awake();
-        }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.TryGetComponent<Enemy>(out var enemy)) return;
