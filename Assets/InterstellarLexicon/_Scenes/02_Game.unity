@@ -557,8 +557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 2073762961}
-  panelPopupDuration: 0.5
-  panelPopupEase: 3
+  panelPopupDuration: 0.25
+  panelPopupEase: 27
   levelTMP: {fileID: 1010851762}
   wordsTMP: {fileID: 1624795095}
   wpmTMP: {fileID: 961838415}
