@@ -33,6 +33,7 @@ namespace AP
         public int CurrentCombo { get; private set; } = 0;
         public int HighestCombo { get; private set; } = 0;
         public float GameDurationInSeconds { get; private set; } = 0f;
+        public bool IsGameOver { get; private set; }
         public float pointsMultiplierFromPowerup = PointsMultiplierPowerup.ORIGINAL_MULTIPLIER;
 
         [SerializeField] private float experienceIncreaseFactor;
@@ -62,6 +63,7 @@ namespace AP
 
         private void Update()
         {
+            if (IsGameOver) { return; }
             GameDurationInSeconds += Time.unscaledDeltaTime;
         }
 
