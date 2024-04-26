@@ -38,7 +38,7 @@ namespace AP.EnemySystem
             ProjectilesManager.Instance.OnTargetShot += TargetShot;
             PlanetBehaviour.Instance.OnHitByEnemy += EnemyCrashed;
             GameManager.Instance.OnLevelUp += ShortenInstantiatingDelay;
-            GameManager.Instance.OnGameOver += () => GameOver();
+            GameManager.Instance.OnGameOver += GameOver;
         }
 
         private IEnumerator StartInstantiatingCoroutine()
@@ -113,6 +113,11 @@ namespace AP.EnemySystem
 
         private void GameOver()
         {
+            foreach (Enemy enemy in Enemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+
             StopAllCoroutines();
         }
     }
