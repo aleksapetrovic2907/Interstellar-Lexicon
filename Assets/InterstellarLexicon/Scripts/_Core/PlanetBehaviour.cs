@@ -18,7 +18,6 @@ namespace AP
             OnHitByEnemy?.Invoke(enemy);
         }
 
-        [ContextMenu("test")]
         private void DestroyPlanet()
         {
             explosionVFX.transform.SetParent(null);
