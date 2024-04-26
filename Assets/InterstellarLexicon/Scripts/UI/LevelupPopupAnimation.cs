@@ -13,15 +13,22 @@ namespace AP.UI
 
         private Sequence m_popupSequence;
 
-        private void OnEnable() => GameManager.Instance.OnLevelUp += delegate { PlayPopupAnimation(); };
-        private void OnDisable() => GameManager.Instance.OnLevelUp -= delegate { PlayPopupAnimation(); };
-
         private void Awake()
         {
             m_popupSequence = DOTween.Sequence();
             Tween scaleUp = transform.DOScale(targetScale, duration / 2f).SetEase(scaleUpEase);
             Tween scaleDown = transform.DOScale(Vector3.zero, duration / 2f).SetEase(scaleDownEase);
             m_popupSequence.Append(scaleUp).AppendInterval(interval).Append(scaleDown);
+        }
+
+        private void Start()
+        {
+            SubscribeToEvents();
+        }
+
+        private void SubscribeToEvents()
+        {
+            GameManager.Instance.OnLevelUp += _ => PlayPopupAnimation();
         }
 
         private void PlayPopupAnimation()

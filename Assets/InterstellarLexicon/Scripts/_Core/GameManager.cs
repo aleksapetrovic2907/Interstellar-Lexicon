@@ -41,23 +41,22 @@ namespace AP
         private const int EXPERIENCE_PER_LETTER = 1;
         private const int DAMAGE_PER_LETTER = 1;
 
-        private void OnEnable()
-        {
-            EnemyInstanceManager.Instance.OnEnemyDestroyed += EnemyDestroyed;
-            PlanetBehaviour.Instance.OnHitByEnemy += PlanetHit;
-        }
-
-        private void OnDisable()
-        {
-            EnemyInstanceManager.Instance.OnEnemyDestroyed -= EnemyDestroyed;
-            PlanetBehaviour.Instance.OnHitByEnemy -= PlanetHit;
-        }
-
         protected override void Awake()
         {
             base.Awake();
             // todo: LoadModifiersData();
             ExperienceTillNextLevel = BASE_EXPERIENCE_REQUIRED_FOR_LEVELUP;
+        }
+
+        private void Start()
+        {
+            SubscribeToEvents();
+        }
+
+        private void SubscribeToEvents()
+        {
+            EnemyInstanceManager.Instance.OnEnemyDestroyed += EnemyDestroyed;
+            PlanetBehaviour.Instance.OnHitByEnemy += PlanetHit;
         }
 
         private void Update()

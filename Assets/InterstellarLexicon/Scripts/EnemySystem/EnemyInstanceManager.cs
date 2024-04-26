@@ -24,27 +24,21 @@ namespace AP.EnemySystem
 
         private Camera m_mainCamera;
 
-        private void OnEnable()
+        private void Start()
+        {
+            SubscribeToEvents();
+
+            m_mainCamera = Camera.main;
+            StartCoroutine(StartInstantiatingCoroutine());
+        }
+
+        private void SubscribeToEvents()
         {
             TypingManager.Instance.OnWordSubmitted += TryFindEnemy;
             ProjectilesManager.Instance.OnTargetShot += TargetShot;
             PlanetBehaviour.Instance.OnHitByEnemy += EnemyCrashed;
             GameManager.Instance.OnLevelUp += ShortenInstantiatingDelay;
             GameManager.Instance.OnGameOver += () => GameOver();
-        }
-        private void OnDisable()
-        {
-            TypingManager.Instance.OnWordSubmitted -= TryFindEnemy;
-            ProjectilesManager.Instance.OnTargetShot -= TargetShot;
-            PlanetBehaviour.Instance.OnHitByEnemy -= EnemyCrashed;
-            GameManager.Instance.OnLevelUp -= ShortenInstantiatingDelay;
-            GameManager.Instance.OnGameOver -= () => GameOver();
-        }
-
-        private void Start()
-        {
-            m_mainCamera = Camera.main;
-            StartCoroutine(StartInstantiatingCoroutine());
         }
 
         private IEnumerator StartInstantiatingCoroutine()

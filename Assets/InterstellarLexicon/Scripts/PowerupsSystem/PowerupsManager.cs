@@ -9,14 +9,9 @@ namespace AP.PowerupsSystem
 
         [SerializeField] private List<Powerup> powerups;
 
-        private void OnEnable()
+        private void Start()
         {
             GameManager.Instance.OnGameOver += DisableAllPowerups;
-        }
-
-        private void OnDisable()
-        {
-            GameManager.Instance.OnGameOver -= DisableAllPowerups;
         }
 
         public void ActivatePowerup(PowerupType powerupType)

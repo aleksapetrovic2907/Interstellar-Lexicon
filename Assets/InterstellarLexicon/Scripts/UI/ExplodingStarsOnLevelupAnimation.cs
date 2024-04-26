@@ -13,14 +13,21 @@ namespace AP.UI
         private ParticleSystem.EmissionModule m_emissionModule;
         private ParticleSystem.MinMaxCurve m_originalEmissionRate;
 
-        private void OnEnable() => GameManager.Instance.OnLevelUp += delegate { PlayLevelUpAnimation(); };
-        private void OnDisable() => GameManager.Instance.OnLevelUp -= delegate { PlayLevelUpAnimation(); };
-
         private void Awake()
         {
             explodingStarsParticleSystem = GetComponent<ParticleSystem>();
             m_emissionModule = explodingStarsParticleSystem.emission;
             m_originalEmissionRate = m_emissionModule.rateOverTime;
+        }
+
+        private void Start()
+        {
+            SubscribeToEvents();
+        }
+
+        private void SubscribeToEvents()
+        {
+            GameManager.Instance.OnLevelUp += _ => PlayLevelUpAnimation();
         }
 
         private void PlayLevelUpAnimation()

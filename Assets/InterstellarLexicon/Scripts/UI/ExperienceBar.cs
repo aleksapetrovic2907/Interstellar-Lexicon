@@ -19,18 +19,6 @@ namespace AP.UI
 
         private Sequence m_levelUpSequence = null;
 
-        private void OnEnable()
-        {
-            ProjectilesManager.Instance.OnTargetShot += delegate { UpdateExperience(); };
-            GameManager.Instance.OnLevelUp += UpdateLevel;
-        }
-
-        private void OnDisable()
-        {
-            ProjectilesManager.Instance.OnTargetShot -= delegate { UpdateExperience(); };
-            GameManager.Instance.OnLevelUp -= UpdateLevel;
-        }
-
         private void Awake()
         {
             m_levelUpSequence = DOTween.Sequence();
@@ -39,7 +27,17 @@ namespace AP.UI
             m_levelUpSequence.Append(scaleUpAndBack).Join(changeColorAndBack);
         }
 
-        private void Start() => UpdateExperience();
+        private void Start()
+        {
+            SubscribeToEvents();
+            UpdateExperience();
+        }
+
+        private void SubscribeToEvents()
+        {
+            ProjectilesManager.Instance.OnTargetShot += _ => UpdateExperience();
+            GameManager.Instance.OnLevelUp += UpdateLevel;
+        }
 
         private void UpdateExperience()
         {

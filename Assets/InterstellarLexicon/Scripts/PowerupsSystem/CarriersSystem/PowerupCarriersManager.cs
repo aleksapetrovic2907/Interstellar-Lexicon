@@ -16,21 +16,16 @@ namespace AP.PowerupsSystem.CarriersSystem
 
         private PowerupCarrier m_currentPowerupCarrier = null;
 
-        private void OnEnable()
+        private void Start()
+        {
+            SubscribeToEvents();
+            StartCoroutine(StartSpawningCarriersCoroutine());
+        }
+
+        private void SubscribeToEvents()
         {
             TypingManager.Instance.OnWordSubmitted += TryFindCarrier;
             GameManager.Instance.OnGameOver += StopSpawningCarriers;
-        }
-
-        private void OnDisable()
-        {
-            TypingManager.Instance.OnWordSubmitted -= TryFindCarrier;
-            GameManager.Instance.OnGameOver -= StopSpawningCarriers;
-        }
-
-        private void Start()
-        {
-            StartCoroutine(StartSpawningCarriersCoroutine());
         }
 
         private void TryFindCarrier(string word)

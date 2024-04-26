@@ -11,8 +11,7 @@ namespace AP.CameraSystem
 
         private Tween m_cameraShake = null;
 
-        private void OnEnable() => PlanetBehaviour.Instance.OnHitByEnemy += delegate { ShakeCamera(); };
-        private void OnDisable() => PlanetBehaviour.Instance.OnHitByEnemy -= delegate { ShakeCamera(); };
+        private void Start() => PlanetBehaviour.Instance.OnHitByEnemy += _ => ShakeCamera();
 
         private void ShakeCamera()
         {

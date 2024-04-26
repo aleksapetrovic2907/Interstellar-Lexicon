@@ -16,22 +16,21 @@ namespace AP.UI
         private TextMeshProUGUI m_counter;
         private Tween m_counterPunchTween = null;
 
-        private void OnEnable()
-        {
-            PlanetBehaviour.Instance.OnHitByEnemy += delegate { UpdateCounter(); };
-            ProjectilesManager.Instance.OnTargetShot += delegate { UpdateCounter(); };
-        }
-
-        private void OnDisable()
-        {
-            PlanetBehaviour.Instance.OnHitByEnemy -= delegate { UpdateCounter(); };
-            ProjectilesManager.Instance.OnTargetShot -= delegate { UpdateCounter(); };
-        }
-
         private void Awake()
         {
             m_counter = GetComponent<TextMeshProUGUI>();
             m_counterPunchTween = m_counter.transform.DOScale(scaleIncrease, scaleDuration).SetEase(scaleEase).SetLoops(2, LoopType.Yoyo).SetRelative(true);
+        }
+
+        private void Start()
+        {
+            SubscribeToEvents();
+        }
+
+        private void SubscribeToEvents()
+        {
+            PlanetBehaviour.Instance.OnHitByEnemy += _ => UpdateCounter();
+            ProjectilesManager.Instance.OnTargetShot += _ => UpdateCounter();
         }
 
         private void UpdateCounter()

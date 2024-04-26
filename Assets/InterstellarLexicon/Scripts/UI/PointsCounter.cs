@@ -8,15 +8,7 @@ namespace AP.UI
     {
         [SerializeField] private TextMeshProUGUI counter;
 
-        private void OnEnable()
-        {
-            ProjectilesManager.Instance.OnTargetShot += delegate { UpdateCounter(); };
-        }
-
-        private void OnDisable()
-        {
-            ProjectilesManager.Instance.OnTargetShot -= delegate { UpdateCounter(); };
-        }
+        private void Start() => ProjectilesManager.Instance.OnTargetShot += _ => UpdateCounter();
 
         private void UpdateCounter()
         {

@@ -9,17 +9,16 @@ namespace AP.UI
         [SerializeField] private TextMeshProUGUI healthValue;
         [SerializeField] private Slider healthSlider;
 
-        private void OnEnable()
+        private void Start()
         {
-            GameManager.Instance.OnHealthChange += delegate { UpdateHealth(); };
+            SubscribeToEvents();
+            UpdateHealth();
         }
 
-        private void OnDisable()
+        private void SubscribeToEvents()
         {
-            GameManager.Instance.OnHealthChange -= delegate { UpdateHealth(); };
+            GameManager.Instance.OnHealthChange += _ => UpdateHealth();
         }
-
-        private void Start() => UpdateHealth();
 
         private void UpdateHealth()
         {
