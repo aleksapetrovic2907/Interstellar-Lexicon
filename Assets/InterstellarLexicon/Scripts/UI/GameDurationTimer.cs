@@ -7,6 +7,8 @@ namespace AP.UI
     {
         [SerializeField] private TextMeshProUGUI timer;
 
+        private void Start() => GameManager.Instance.OnGameOver += () => Destroy(gameObject);
+
         private void LateUpdate()
         {
             timer.text = FormatTime((int)GameManager.Instance.GameDurationInSeconds);
