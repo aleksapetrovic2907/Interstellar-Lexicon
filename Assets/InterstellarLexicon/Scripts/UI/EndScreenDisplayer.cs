@@ -27,7 +27,7 @@ namespace AP.UI
             wordsTMP.text = GameManager.Instance.WordsWrittenCorrectly.ToString();
             wpmTMP.text = GameManager.Instance.WordsPerMinute.ToString();
             maxComboTMP.text = GameManager.Instance.HighestCombo.ToString();
-            durationTMP.text = GameManager.Instance.GameDurationInSeconds.ToString();
+            durationTMP.text = GameDurationTimer.FormatTime((int)GameManager.Instance.GameDurationInSeconds).ToString();
             pointsTMP.text = PointsCounter.FormatPoints(GameManager.Instance.Points).ToString();
 
             // Animate panel.
