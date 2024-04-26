@@ -1,6 +1,5 @@
 using UnityEngine;
 using AP.EnemySystem;
-using AP.ProjectileSystem;
 using System;
 using AP.PowerupsSystem;
 

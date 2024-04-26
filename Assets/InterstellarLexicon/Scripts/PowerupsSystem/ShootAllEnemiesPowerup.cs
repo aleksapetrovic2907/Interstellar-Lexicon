@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using AP.EnemySystem;
-using UnityEngine;
 
 namespace AP.PowerupsSystem
 {

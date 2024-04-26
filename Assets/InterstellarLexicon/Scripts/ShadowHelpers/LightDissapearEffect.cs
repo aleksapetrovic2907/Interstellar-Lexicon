@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Rendering.Universal;
-using Unity.Collections;
 
 namespace AP.ShadowHelpers
 {
