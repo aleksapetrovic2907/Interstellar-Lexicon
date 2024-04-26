@@ -12,7 +12,9 @@ namespace AP.UI
 
         private void UpdateCounter()
         {
-            counter.text = string.Format("{0,7:D7}", GameManager.Instance.Points); 
+            counter.text = FormatPoints(GameManager.Instance.Points);
         }
+
+        public static string FormatPoints(int points) => string.Format("{0,7:D7}", points); 
     }
 }
