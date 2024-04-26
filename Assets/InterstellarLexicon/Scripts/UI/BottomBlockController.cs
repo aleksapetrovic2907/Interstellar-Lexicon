@@ -13,7 +13,7 @@ namespace AP.UI
 
         private void HideBlock()
         {
-            Vector2 targetPosition = new Vector2(block.anchoredPosition.x, -block.anchoredPosition.y);
+            Vector2 targetPosition = new(block.anchoredPosition.x, -block.anchoredPosition.y);
             block.DOAnchorPos(targetPosition, hideDuration).SetEase(hideEase).Play();
         }
     }

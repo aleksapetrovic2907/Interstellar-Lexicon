@@ -10,7 +10,7 @@ namespace AP.EnemySystem
 {
     public class EnemyInstanceManager : GloballyAccessibleBase<EnemyInstanceManager>
     {
-        public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
+        public List<Enemy> Enemies { get; private set; } = new();
         public int EnemiesDestroyed { get; private set; } = 0;
 
         public event Action<Enemy> OnEnemyDestroyed;

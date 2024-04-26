@@ -19,7 +19,7 @@ namespace AP.UI
         {
             gameObject.name = $"{word}_title";
             title.text = word;
-            blackBackground.sizeDelta = new Vector2(title.preferredWidth + BACKGROUND_PADDING_X, blackBackground.sizeDelta.y + BACKGROUND_PADDING_Y);
+            blackBackground.sizeDelta = new(title.preferredWidth + BACKGROUND_PADDING_X, blackBackground.sizeDelta.y + BACKGROUND_PADDING_Y);
             titleLocationTr = titleLocation;
             m_mainCamera = Camera.main;
             m_rectTransform = GetComponent<RectTransform>();

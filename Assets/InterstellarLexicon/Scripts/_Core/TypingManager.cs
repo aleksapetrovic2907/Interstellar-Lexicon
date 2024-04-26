@@ -12,9 +12,9 @@ namespace AP
         public event Action<string> OnWordChanged;
         public event Action<string> OnWordSubmitted;
 
-        private List<KeyCode> m_submitKeyCodes = new List<KeyCode>() { KeyCode.Return, KeyCode.KeypadEnter };
-        private List<KeyCode> m_deleteKeyCodes = new List<KeyCode>() { KeyCode.Backspace, KeyCode.Delete };
-        private List<KeyCode> m_alphabetKeyCodes = new List<KeyCode>();
+        private List<KeyCode> m_submitKeyCodes = new() { KeyCode.Return, KeyCode.KeypadEnter };
+        private List<KeyCode> m_deleteKeyCodes = new() { KeyCode.Backspace, KeyCode.Delete };
+        private List<KeyCode> m_alphabetKeyCodes = new();
 
         protected override void Awake()
         {
