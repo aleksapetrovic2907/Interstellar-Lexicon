@@ -50,6 +50,7 @@ namespace AP.ProjectileSystem
         private void OnDrawGizmos()
         {
             if (!drawPlanetRadiusGizmos) return;
+            if (planet == null) return;
 
             Gizmos.color = gizmosColor;
             Gizmos.DrawWireSphere(planet.position, planetRadius);
