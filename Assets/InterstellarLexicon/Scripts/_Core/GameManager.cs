@@ -31,6 +31,7 @@ namespace AP
             }
         }
         public int CurrentCombo { get; private set; } = 0;
+        public int HighestCombo { get; private set; } = 0;
         public float GameDurationInSeconds { get; private set; } = 0f;
         public float pointsMultiplierFromPowerup = PointsMultiplierPowerup.ORIGINAL_MULTIPLIER;
 
@@ -89,6 +90,12 @@ namespace AP
         private void PlanetHit(Enemy enemy)
         {
             LoseHealth(enemy.word.Length * DAMAGE_PER_LETTER);
+
+            if (HighestCombo < CurrentCombo)
+            {
+                HighestCombo = CurrentCombo;
+            }
+
             CurrentCombo = 0;
         }
 
