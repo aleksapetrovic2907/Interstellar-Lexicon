@@ -24,7 +24,7 @@ namespace AP.PowerupsSystem.CarriersSystem
         private void SubscribeToEvents()
         {
             TypingManager.Instance.OnWordSubmitted += TryFindCarrier;
-            GameManager.Instance.OnGameOver += StopSpawningCarriers;
+            GameManager.Instance.OnGameOver += GameOver;
         }
 
         private void TryFindCarrier(string word)
@@ -63,6 +63,14 @@ namespace AP.PowerupsSystem.CarriersSystem
             m_currentPowerupCarrier = null;
         }
 
-        private void StopSpawningCarriers() => StopAllCoroutines();
+        private void GameOver()
+        {
+            StopAllCoroutines();
+
+            if (m_currentPowerupCarrier != null)
+            {
+                Destroy(m_currentPowerupCarrier.gameObject);
+            }
+        }
     }
 }
