@@ -43,8 +43,8 @@ namespace AP.EnemySystem
 
         private IEnumerator StartInstantiatingCoroutine()
         {
-            var randomDelay = instantiateDelayRange.GetRandomInRange();
-            yield return new WaitForSeconds(randomDelay);
+            var randomDelay = (instantiateDelayRange * Modifiers.EnemyFrequency).GetRandomInRange();
+            yield return new WaitForSeconds(randomDelay );
             InstantiateEnemy();
             StartCoroutine(StartInstantiatingCoroutine());
         }
@@ -60,7 +60,7 @@ namespace AP.EnemySystem
             enemy.SetSpriteData(enemyPreset.mainSprite, enemyPreset.whiteSprite);
             enemy.transform.localScale = enemyPreset.scale * Vector3.one;
             enemy.transform.position = GetSpawnPosition(enemy);
-            enemy.GetComponent<EnemyMovementController>().StartMoving(EnvironmentReferences.Instance.planet, enemyPreset.speed);
+            enemy.GetComponent<EnemyMovementController>().StartMoving(EnvironmentReferences.Instance.planet, enemyPreset.speed * Modifiers.EnemySpeed);
             ShadowPathSetter.SetShadowPath(enemy.GetComponent<ShadowCaster2D>(), enemyPreset.shadowCaster2DPath);
             Enemies.Add(enemy);
         }
