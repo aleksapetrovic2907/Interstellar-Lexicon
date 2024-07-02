@@ -71,7 +71,7 @@ namespace AP
         private void EnemyDestroyed(Enemy enemy)
         {
             var wordLength = enemy.word.Length;
-            Points += (int)(wordLength * pointsPerLetter * pointsMultiplierFromPowerup);
+            Points += (int)(wordLength * pointsPerLetter * Modifiers.PointsModifier * pointsMultiplierFromPowerup);
             GainExperience(wordLength);
             CurrentCombo++;
         }
