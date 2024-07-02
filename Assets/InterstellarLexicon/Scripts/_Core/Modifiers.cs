@@ -11,10 +11,11 @@ namespace AP
 
         public static void ResetToDefault()
         {
-            SetEnemySpeedModifier(1f);
-            SetEnemyFrequencyModifier(1f);
-            SetPowerupSpeedModifier(1f);
-            SetPowerupFrequencyModifier(1f);
+            EnemySpeed = 1f;
+            EnemyFrequency = 1f;
+            PowerupSpeed = 1f;
+            PowerupFrequency = 1f;
+            EvaluatePointsModifier();
         }
 
         public static void EvaluatePointsModifier()
@@ -26,7 +27,7 @@ namespace AP
             PointsModifier = enemyModifiers * powerupsModifiers;
         }
 
-        #region SETTERS
+#region SETTERS
         public static void SetEnemySpeedModifier(float value)
         {
             EnemySpeed = value;
