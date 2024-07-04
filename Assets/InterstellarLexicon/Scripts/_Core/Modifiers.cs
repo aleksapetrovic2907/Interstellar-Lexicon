@@ -2,12 +2,12 @@ namespace AP
 {
     public static class Modifiers
     {
-        public static float PointsModifier { get; private set; }
+        public static float PointsModifier { get; private set; } = 1f;
 
-        public static float EnemySpeed { get; private set; }
-        public static float EnemyFrequency { get; private set; }
-        public static float PowerupSpeed { get; private set; }
-        public static float PowerupFrequency { get; private set; }
+        public static float EnemySpeed { get; private set; } = 1f;
+        public static float EnemyFrequency { get; private set; } = 1f;
+        public static float PowerupSpeed { get; private set; } = 1f;
+        public static float PowerupFrequency { get; private set; } = 1f;
 
         public static void ResetToDefault()
         {
@@ -21,13 +21,13 @@ namespace AP
         public static void EvaluatePointsModifier()
         {
             float enemyModifiers = EnemySpeed * EnemyFrequency;
-            float powerupsModifiers = 1 / (PowerupSpeed * PowerupFrequency);
+            float powerupsModifiers = PowerupSpeed / PowerupFrequency;
 
             // Calculate overall points modifier
             PointsModifier = enemyModifiers * powerupsModifiers;
         }
 
-#region SETTERS
+        #region SETTERS
         public static void SetEnemySpeedModifier(float value)
         {
             EnemySpeed = value;

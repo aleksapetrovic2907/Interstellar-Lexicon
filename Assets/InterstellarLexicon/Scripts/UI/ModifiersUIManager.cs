@@ -20,6 +20,8 @@ namespace AP.UI
         [SerializeField] private Slider powerupFrequencySlider;
         [SerializeField] private TextMeshProUGUI powerupFrequencyValueTMP;
 
+        private const string DIFFICULTY_LABEL = "DIFFICULTY POINTS MULTIPLIER: ";
+
         private void Awake()
         {
             enemySpeedSlider.onValueChanged.AddListener(_ => UpdateEnemySpeed());
@@ -28,30 +30,53 @@ namespace AP.UI
             powerupFrequencySlider.onValueChanged.AddListener(_ => UpdatePowerupFrequency());
         }
 
+        private void UpdatePointsDifficultyTextValue()
+        {
+            pointsModifierValue.text = DIFFICULTY_LABEL + ModifierValueToString(Modifiers.PointsModifier);
+        }
+
         private void UpdateEnemySpeed()
         {
             Modifiers.SetEnemySpeedModifier(enemySpeedSlider.value);
-            pointsModifierValue.text = ModifierValueToString(Modifiers.PointsModifier);
+            enemySpeedValueTMP.text = ModifierValueToString(Modifiers.EnemySpeed);
+            UpdatePointsDifficultyTextValue();
         }
 
         private void UpdateEnemyFrequency()
         {
             Modifiers.SetEnemyFrequencyModifier(enemyFrequencySlider.value);
-            pointsModifierValue.text = ModifierValueToString(Modifiers.PointsModifier);
+            enemyFrequencyValueTMP.text = ModifierValueToString(Modifiers.EnemyFrequency);
+            UpdatePointsDifficultyTextValue();
         }
 
         private void UpdatePowerupSpeed()
         {
             Modifiers.SetPowerupSpeedModifier(powerupSpeedSlider.value);
-            pointsModifierValue.text = ModifierValueToString(Modifiers.PointsModifier);
+            powerupSpeedValueTMP.text = ModifierValueToString(Modifiers.PowerupSpeed);
+            UpdatePointsDifficultyTextValue();
         }
 
         private void UpdatePowerupFrequency()
         {
             Modifiers.SetPowerupFrequencyModifier(powerupFrequencySlider.value);
-            pointsModifierValue.text = ModifierValueToString(Modifiers.PointsModifier);
+            powerupFrequencyValueTMP.text = ModifierValueToString(Modifiers.PowerupFrequency);
+            UpdatePointsDifficultyTextValue();
         }
 
-        private static string ModifierValueToString(float value) => "x" + value.ToString();
+        public void ResetToDefault()
+        {
+            Modifiers.ResetToDefault();
+
+            enemySpeedSlider.value = Modifiers.EnemySpeed;
+            enemySpeedValueTMP.text = ModifierValueToString(enemySpeedSlider.value);
+            enemyFrequencySlider.value = Modifiers.EnemyFrequency;
+            enemyFrequencyValueTMP.text = ModifierValueToString(enemyFrequencySlider.value);
+            powerupSpeedSlider.value = Modifiers.PowerupSpeed;
+            powerupSpeedValueTMP.text = ModifierValueToString(powerupSpeedSlider.value);
+            powerupFrequencySlider.value = Modifiers.PowerupFrequency;
+            powerupFrequencyValueTMP.text = ModifierValueToString(powerupFrequencySlider.value);
+        }
+
+        private static string ModifierValueToString(float value) => "x" + value.ToString("0.00");
     }
 }
