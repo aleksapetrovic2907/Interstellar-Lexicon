@@ -44,7 +44,7 @@ namespace AP.PowerupsSystem.CarriersSystem
             yield return new WaitUntil(() => m_currentPowerupCarrier == null);
             yield return new WaitUntil(() => !PowerupsManager.Instance.isAnyPowerupActive);
 
-            var randomDelay = (carrierSpawnDelayRange * Modifiers.PowerupFrequency).GetRandomInRange();
+            var randomDelay = (carrierSpawnDelayRange / Modifiers.PowerupFrequency).GetRandomInRange();
             yield return new WaitForSeconds(randomDelay);
 
             SpawnCarrier();

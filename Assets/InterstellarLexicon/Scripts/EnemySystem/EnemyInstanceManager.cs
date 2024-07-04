@@ -43,7 +43,7 @@ namespace AP.EnemySystem
 
         private IEnumerator StartInstantiatingCoroutine()
         {
-            var randomDelay = (instantiateDelayRange * Modifiers.EnemyFrequency).GetRandomInRange();
+            var randomDelay = (instantiateDelayRange / Modifiers.EnemyFrequency).GetRandomInRange();
             yield return new WaitForSeconds(randomDelay );
             InstantiateEnemy();
             StartCoroutine(StartInstantiatingCoroutine());
