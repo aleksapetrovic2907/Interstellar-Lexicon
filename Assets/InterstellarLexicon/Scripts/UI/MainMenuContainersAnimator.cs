@@ -80,5 +80,8 @@ namespace AP.UI
                 m_isAnimating = false;
             }).Play();
         }
+
+        public void StartGame() => SceneManager.Instance.LoadGameScene();
+        public void ExitGame() => SceneManager.Instance.ExitGame();
     }
 }

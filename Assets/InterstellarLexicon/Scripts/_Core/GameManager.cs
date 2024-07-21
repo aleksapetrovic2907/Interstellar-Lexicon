@@ -121,5 +121,8 @@ namespace AP
             Score score = new Score(Points, WordsPerMinute, Modifiers.PointsModifier);
             ScoresManager.Instance.AddScore(score);
         }
+
+        public void RestartGame() => SceneManager.Instance.LoadGameScene();
+        public void GoToMainMenu() => SceneManager.Instance.LoadMenuScene();
     }
 }

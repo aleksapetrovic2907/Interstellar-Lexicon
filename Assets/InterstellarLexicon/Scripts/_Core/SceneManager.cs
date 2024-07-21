@@ -25,5 +25,6 @@ namespace AP
 
         public void LoadMenuScene() => UnityEngine.SceneManagement.SceneManager.LoadScene(MENU_SCENE_INDEX);
         public void LoadGameScene() => UnityEngine.SceneManagement.SceneManager.LoadScene(GAME_SCENE_INDEX);
+        public void ExitGame() => Application.Quit();
     }
 }
