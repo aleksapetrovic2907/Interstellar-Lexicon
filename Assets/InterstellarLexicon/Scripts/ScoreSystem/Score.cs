@@ -3,9 +3,9 @@ namespace AP.ScoreSystem
     [System.Serializable]
     public class Score
     {
-        public int Points { get; private set; } = 0;
-        public int WPM { get; private set; } = 0;
-        public float DifficultyMultiplier { get; private set; } = 1f;
+        public int Points { get; set; } = 0;
+        public int WPM { get; set; } = 0;
+        public float DifficultyMultiplier { get; set; } = 1f;
 
         public Score(int points, int wpm, float difficultyMultiplier)
         {
@@ -13,5 +13,7 @@ namespace AP.ScoreSystem
             WPM = wpm;
             DifficultyMultiplier = difficultyMultiplier;
         }
+
+        public Score() { }
     }
 }

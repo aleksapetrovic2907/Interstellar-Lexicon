@@ -77,6 +77,6 @@ namespace AP.UI
             powerupFrequencyValueTMP.text = ModifierValueToString(powerupFrequencySlider.value);
         }
 
-        private static string ModifierValueToString(float value) => "x" + value.ToString("0.00");
+        public static string ModifierValueToString(float value) => "x" + value.ToString("0.00");
     }
 }

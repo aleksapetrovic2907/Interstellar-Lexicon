@@ -7,5 +7,6 @@ namespace AP.ScoreSystem
     {
         public List<Score> scores;
         public ScoresListEntry(List<Score> scores) => this.scores = new List<Score>(scores);
+        public ScoresListEntry() { }
     }
 }

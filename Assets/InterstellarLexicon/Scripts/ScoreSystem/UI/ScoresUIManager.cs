@@ -8,7 +8,7 @@ namespace AP.ScoreSystem.UI
         [SerializeField] private RectTransform scoresParent;
         [SerializeField] private int scoresToDisplayCount;
 
-        private void Awake() => GenerateScoresList();
+        private void Start() => GenerateScoresList();
 
         private void GenerateScoresList()
         {
@@ -18,11 +18,11 @@ namespace AP.ScoreSystem.UI
 
                 if (i >= ScoresManager.Scores.Count)
                 {
-                    scoreUI.Initialize(new Score(0, 0, 0f));
+                    scoreUI.Initialize(i, new Score(0, 0, 0f));
                 }
                 else
                 {
-                    scoreUI.Initialize(ScoresManager.Scores[i]);
+                    scoreUI.Initialize(i, ScoresManager.Scores[i]);
                 }
             }
         }

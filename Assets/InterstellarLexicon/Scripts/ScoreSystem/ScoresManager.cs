@@ -7,23 +7,33 @@ namespace AP.ScoreSystem
 {
     public class ScoresManager : MonoBehaviour
     {
-        public static IReadOnlyList<Score> Scores = s_scores.AsReadOnly();
+        public static ScoresManager Instance { get; private set; }
+        public static List<Score> Scores = new();
 
-        private static List<Score> s_scores = new();
+        private const string FILE_NAME = "scores.xml";
 
-        private const string FILE_NAME = "/scores.xml";
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(this);
+            }
 
-        private void Awake() => LoadScores();
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            LoadScores();
+        }
 
         public void AddScore(Score score)
         {
-            int index = s_scores.FindIndex(entry => score.Points > entry.Points);
+            int index = Scores.FindIndex(entry => score.Points > entry.Points);
 
             // Add to list while leaving it descending by points.
             if (index >= 0)
-                s_scores.Insert(index, score);
+                Scores.Insert(index, score);
             else
-                s_scores.Add(score);
+                Scores.Add(score);
         }
 
         private void OnApplicationQuit() => SaveScores();
@@ -31,15 +41,17 @@ namespace AP.ScoreSystem
         #region SAVE_SYSTEM
         private void SaveScores()
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ScoresListEntry));
+            XmlSerializer xmlSerializer = new(typeof(ScoresListEntry));
             FileStream fileStream = File.Create(Path.Combine(Application.persistentDataPath, FILE_NAME));
-            ScoresListEntry scoresListEntry = new(s_scores);
+            ScoresListEntry scoresListEntry = new(Scores);
             xmlSerializer.Serialize(fileStream, scoresListEntry);
             fileStream.Close();
         }
 
         private void LoadScores()
         {
+            Scores = new List<Score>();
+
             if (!File.Exists(Path.Combine(Application.persistentDataPath, FILE_NAME)))
             {
                 return;
@@ -47,7 +59,7 @@ namespace AP.ScoreSystem
 
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(ScoresListEntry));
             FileStream fileStream = File.Open(Path.Combine(Application.persistentDataPath, FILE_NAME), FileMode.Open);
-            s_scores = new((xmlSerializer.Deserialize(fileStream) as ScoresListEntry).scores);
+            Scores = new((xmlSerializer.Deserialize(fileStream) as ScoresListEntry).scores);
             fileStream.Close();
         }
         #endregion

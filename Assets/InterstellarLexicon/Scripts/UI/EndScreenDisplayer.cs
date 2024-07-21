@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using AP.ScoreSystem.UI;
 
 namespace AP.UI
 {
@@ -28,7 +29,7 @@ namespace AP.UI
             wpmTMP.text = GameManager.Instance.WordsPerMinute.ToString();
             maxComboTMP.text = GameManager.Instance.HighestCombo.ToString();
             durationTMP.text = GameDurationTimer.FormatTime((int)GameManager.Instance.GameDurationInSeconds).ToString();
-            pointsTMP.text = PointsCounter.FormatPoints(GameManager.Instance.Points).ToString();
+            pointsTMP.text = Formatter.FormatPoints(GameManager.Instance.Points);
 
             // Animate panel.
             panel.transform.DOScale(Vector3.one, panelPopupDuration).From(Vector3.zero).SetEase(panelPopupEase).Play();

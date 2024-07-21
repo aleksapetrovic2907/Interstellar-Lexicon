@@ -2,6 +2,7 @@ using UnityEngine;
 using AP.EnemySystem;
 using System;
 using AP.PowerupsSystem;
+using AP.ScoreSystem;
 
 namespace AP
 {
@@ -116,6 +117,9 @@ namespace AP
         private void GameLost()
         {
             OnGameOver?.Invoke();
+
+            Score score = new Score(Points, WordsPerMinute, Modifiers.PointsModifier);
+            ScoresManager.Instance.AddScore(score);
         }
     }
 }
