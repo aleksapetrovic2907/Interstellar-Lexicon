@@ -17,6 +17,7 @@ namespace AP.ScoreSystem
             if (Instance != null)
             {
                 Destroy(this);
+                return;
             }
 
             Instance = this;
