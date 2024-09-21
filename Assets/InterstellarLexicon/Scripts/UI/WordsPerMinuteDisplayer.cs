@@ -3,7 +3,7 @@ using TMPro;
 
 namespace AP.UI
 {
-    public class WordsPerMinute : MonoBehaviour
+    public class WordsPerMinuteDisplayer : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI wpm;
 
