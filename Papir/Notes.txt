@@ -1,3 +1,5 @@
 Centiranje svih slika (completed)
-Caption svim slikama
+Caption svim slikama (completed)
+ - Formatiraj svaki caption (completed)
 Predgovor za code
+Formatiraj code da bude konzistentan
