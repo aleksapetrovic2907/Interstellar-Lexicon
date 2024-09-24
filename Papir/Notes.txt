@@ -1,0 +1,3 @@
+Centiranje svih slika (completed)
+Caption svim slikama
+Predgovor za code
